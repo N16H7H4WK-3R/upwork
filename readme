@@ -1,0 +1,50 @@
+These are instructions to run this software, 
+
+prerequisites, 
+1. Python 3.11.9
+2. CUDA-capable GPU (Nvdia)
+3. Network access to IP cameras
+
+Few instructions:
+    plz NOTE the rtsp uri stream link should be in this format only: 
+    
+    `rtsp://username:password@URI`
+otherwise there will be error.
+
+Step-1:
+    Make sure you are in root folder of project before starting.
+    
+Step-2:
+    install necessary libraries like this
+
+    `python install -r requirements.txt`
+
+Step-3:
+    initialize the DB
+
+    `flask db init`
+
+    `flask db migrate -m "Initial migration"`
+
+    `flask db upgrade`
+
+(all above 3 command one after another)
+
+Step-4:
+    Start the app.py
+    `python app.py`
+
+what are you looking at now?
+open the link in the localhost:
+there you can see add halls if you are opening this first time click it Enter a name(as your wish) and add the hall
+now you are redirected to dashboard click view cameras, now click on add camera, here when entering the rtsp stream uri, enter in the following format `rtsp://username:password@URI`
+plz note without this there will be error in code, keep in mind the format of the URI as mentioned above.
+
+
+
+The web interface displays:
+
+List of halls
+Cameras in each hall
+Live video feeds
+Real-time counts (in, out, current)

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ hall.name }} Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9.0"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-4">{{ hall.name }} Dashboard</h1>
+        <div id="hall-counts" hx-get="{{ url_for('dashboard.hall_counts', hall_id=hall.id) }}" hx-trigger="every 5s" class="bg-white shadow-md rounded-lg p-4 mb-4">
+            Loading counts...
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            {% for camera in hall.cameras %}
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold mb-2">{{ camera.name }}</h2>
+                    <img src="{{ url_for('dashboard.video_feed', camera_id=camera.id) }}" alt="{{ camera.name }}" class="w-full h-auto">
+                    <a href="{{ url_for('dashboard.view_camera', camera_id=camera.id) }}" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">
+                        View Camera
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="mt-4">
+            <a href="{{ url_for('camera.add_camera') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-block mr-2">
+                Add New Camera
+            </a>
+            <a href="{{ url_for('dashboard.view_halls') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">
+                Back to Halls
+            </a>
+        </div>
+    </div>

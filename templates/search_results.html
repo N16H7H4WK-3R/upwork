@@ -1,0 +1,47 @@
+<!-- templates/search_results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-4">Search Results for {{ hall.name }}</h1>
+        <div class="bg-white shadow-md rounded-lg p-4 mb-4">
+            <p class="text-xl">Total In: {{ total_in }}</p>
+            <p class="text-xl">Total Out: {{ total_out }}</p>
+            <p class="text-xl">Current Count: {{ current_count }}</p>
+        </div>
+        <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead>
+                <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                    <th class="py-3 px-6 text-left">Timestamp</th>
+                    <th class="py-3 px-6 text-left">Camera</th>
+                    <th class="py-3 px-6 text-left">Count</th>
+                    <th class="py-3 px-6 text-left">In</th>
+                    <th class="py-3 px-6 text-left">Out</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-600 text-sm font-light">
+                {% for count in counts %}
+                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                    <td class="py-3 px-6 text-left whitespace-nowrap">{{ count.timestamp }}</td>
+                    <td class="py-3 px-6 text-left">{{ count.camera.name }}</td>
+                    <td class="py-3 px-6 text-left">{{ count.count }}</td>
+                    <td class="py-3 px-6 text-left">{{ count.in_count }}</td>
+                    <td class="py-3 px-6 text-left">{{ count.out_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="mt-4">
+            <a href="{{ url_for('dashboard.search') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">
+                Back to Search
+            </a>
+        </div>
+    </div>
+</body>
+</html>

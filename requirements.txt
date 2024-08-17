@@ -1,0 +1,8 @@
+flask
+flask-sqlalchemy
+flask-migrate
+opencv-python-headless
+numpy
+torch
+torchvision
+deep_sort_realtime

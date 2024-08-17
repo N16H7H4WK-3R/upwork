@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <a href="{{ url_for('add_camera') }}">Add Camera</a>
+    <ul>
+        {% for camera in cameras %}
+        <li>
+            <a href="{{ url_for('view_camera', camera_id=loop.index0) }}">{{ camera.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
